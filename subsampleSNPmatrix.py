@@ -28,6 +28,13 @@ def getIsolateID(filePathString):
 		isolateString = re.split(pattern='\.', string=splitStr[0])
 	return isolateString[0]
 
+## Function: find number of lines in an input file
+def file_lengthy(fname):
+        with open(fname) as f:
+                for i, l in enumerate(f):
+                        pass
+        return i + 1
+
 
 parser = argparse.ArgumentParser(description='Create a subset from SNP matrix based upon input list', usage="subsampleSNPmatrix.py  filepath1/SNPmatrix.tsv filepath2/isolateList.txt > output.tsv")
 
@@ -39,8 +46,10 @@ parser.add_argument("file2", type=ext_check('.txt', argparse.FileType('r')))
 
 args = parser.parse_args()
 
+#print(file_lengthy(args.file1.name))
+
 ## open SNP matrix file
-table = numpy.loadtxt(args.file1.name, skiprows=1, usecols=range(1,112)) 
+table = numpy.loadtxt(args.file1.name, skiprows=1, usecols=range(1, file_lengthy(args.file1.name))) 
 
 with open(args.file1.name) as f:
     first_line = f.readline()
@@ -56,9 +65,11 @@ clade = [line.strip() for line in filehandle2]
 #print(clade)
 
 clade.sort()
+#print(clade)
 
 IDlist = first_line.split("\t")
 IDlist.pop(0)
+#print(IDlist)
 
 #print(IDlist[0])
 #print(table[2,1])
@@ -71,7 +82,7 @@ Ys = []
 # Populate Xs and Ys with SNP IDlist[i] == isolateList[j]
 for i in range(0, len(IDlist)):
         for j in range(0, len(clade)):
-                if(IDlist[i] == clade[j]):
+                if(IDlist[i].strip() == clade[j]):
                         #print(IDlist[i])
                         Xs.append(i)
                         Ys.append(i)
@@ -80,7 +91,7 @@ for i in range(0, len(IDlist)):
 print(".", end="")
 
 for h in range(len(Xs)):
-        print("\t", IDlist[Xs[h]], end="")
+        print("\t", IDlist[Xs[h]].strip(), end="")
 print()
 
 snpsList = []
@@ -91,7 +102,7 @@ for ii in range(0, len(Xs)):
         zeroOut = 0
         for jj in range(0, len(Ys)):
                 if(rowStart == 0):
-                        print(IDlist[Xs[ii]], end="")
+                        print(IDlist[Xs[ii]].strip(), end="")
                         print("\t", table[Xs[ii], Ys[jj]], end="")
                         rowStart = 1
                         if(table[Xs[ii], Ys[jj]] == 0):
