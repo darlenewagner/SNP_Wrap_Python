@@ -30,7 +30,7 @@ def getIsolateID(filePathString):
 	return isolateString[0]
 
 
-logger = logging.getLogger("mummerPairSNPs.py")
+logger = logging.getLogger("catConsenseGeneflow.py")
 logger.setLevel(logging.INFO)
 ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
@@ -38,9 +38,13 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-parser = argparse.ArgumentParser(description='reads .fa files in input folder', usage="catConsenseGeneflow.py --inDir input_folder")
+## Default: reads a folder full of files with suffix, *. consensus.fa, from Geneflow output
+parser = argparse.ArgumentParser(description='reads *consensus.fa or *recode.fasta files in input folder', usage="catConsenseGeneflow.py --inDir input_folder")
 
 parser.add_argument('--inDir', type=readable_dir, action='store')
+
+## for reading .fasta files output by recodeVCFtoConsensus_pipe.py
+parser.add_argument('--recode', '-re', default='N', choices=['Y','N'], help="read folder full of files with suffix, *.recode.fasta")
 
 args = parser.parse_args()
 
@@ -49,12 +53,14 @@ from os.path import isfile, join
 
 #print(args.inDir)
 
-# first option, list comprehension
+# old option, list comprehension
 #onlyFiles = [f for f in listdir(args.inDir) if isfile(join(args.inDir, f))]\
 
-# second option, glob
-
-onlyFiles = glob.glob(args.inDir + "*snp-consensus.fa")
+# second option, glob, enables --recode switch
+if(args.recode == 'N'):
+	onlyFiles = glob.glob(args.inDir + "*consensus.fa")
+elif(args.recode == 'Y'):
+	onlyFiles = glob.glob(args.inDir + "*recode.fasta")
 
 #print(onlyFiles[0])
 
