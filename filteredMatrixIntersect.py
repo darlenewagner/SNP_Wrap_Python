@@ -73,7 +73,7 @@ while idx < len(textMatrix1):
     hasAmbig = 0
     if(not(re.search(pattern='^#', string=textMatrix1[idx][0]))):
         for item in textMatrix1[idx]:
-            if(re.search(pattern='N', string=item)):
+            if((re.search(pattern='N', string=item)) and (args.noNs == 'Y')):
                hasAmbig = 1
         if(hasAmbig == 0):
             snpPosition1.append(textMatrix1[idx][0] + "_" + textMatrix1[idx][1])
@@ -89,7 +89,7 @@ while idx < len(textMatrix2):
     hasAmbig = 0
     if(not(re.search(pattern='^#', string=textMatrix2[idx][0]))):
         for item in textMatrix2[idx]:
-            if(re.search(pattern='N', string=item)):
+            if((re.search(pattern='N', string=item)) and (args.noNs == 'Y')):
                 hasAmbig = 1
         if(hasAmbig == 0):
             snpPosition2.append(textMatrix2[idx][0] + "_" + textMatrix2[idx][1]) 
