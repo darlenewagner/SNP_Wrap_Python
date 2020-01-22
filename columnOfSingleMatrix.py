@@ -63,7 +63,11 @@ while idx < len(textMatrix1):
             if((re.search(pattern='N', string=item)) and (args.noNs == 'Y')):
                hasAmbig = 1
         if(hasAmbig == 0):
-            snpPosition.append(textMatrix1[idx][0] + "_" + textMatrix1[idx][1])
+            if(re.search(pattern='::', string=textMatrix1[idx][0])):
+                newString = re.sub('::', '_', textMatrix1[idx][0])
+               snpPosition.append(newString)
+            else:
+                snpPosition.append(textMatrix1[idx][0] + "_" + textMatrix1[idx][1])
     idx = idx + 1
 
 
