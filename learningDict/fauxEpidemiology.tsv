@@ -1,0 +1,181 @@
+isolate	City	body site	date of isolation
+strain1690	Static: Adria	wound	11/29/2120
+strain1692	Static: Adria	wound	12/5/2120
+strain1693	Static: Adria	Axilla/Groin	12/21/2120
+strain3690	Static: Adria	Bronchus	12/27/2120
+strain3691	Static: Adria	Bronchus	12/31/2120
+strain4413	Static: Faborsburg	Axilla	11/11/2121
+strain4418	Static: Faborsburg	Axilla/groin/nares pool	1/19/2122
+strain4419	Static: Faborsburg	wound	2/4/2122
+strain4420	Static: Faborsburg	nares	4/19/2121
+strain4421	Static: Faborsburg	wound	2/15/2122
+strain4422	Static: Faborsburg	Bronchus	2/22/2122
+strain4493	Static: Faborsburg	Bronchus	12/4/2121
+strain4494	Static: Faborsburg	Bronchus	1/6/2122
+strain4519	Static: Faborsburg	blood	5/13/2121
+strain4520	Static: Faborsburg	wound	1/1/2122
+strain4613	Static: Faborsburg	skin	8/15/2121
+strain2493	Static: Riemont	Bronchus	5/3/2121
+strain3518	Static: Riemont	blood	4/12/2121
+strain3519	Static: Riemont	blood	10/28/2121
+strain3520	Static: Riemont	wound	12/19/2121
+strain3521	Static: Riemont	Axilla/Groin	10/25/2121
+strain3613	Static: Riemont	skin	5/18/2121
+strain2291	Static: Shangri-La	blood	2/14/2122
+strain2296	Static: Shangri-La	Vaginal	1/6/2122
+strain3692	Static: Xanadu	wound	11/27/2121
+strain3696	Static: Xanadu	Bronchus	10/29/2121
+strain3697	Static: Xanadu	blood	1/8/2122
+strain2847	Traction: Egalitalia	urine	6/30/2121
+strain2848	Traction: Egalitalia	Vaginal	2/10/2122
+strain3343	Traction: Kriegsmarinestadt 	wound	3/17/2121
+strain3344	Traction: Kriegsmarinestadt 	urine	1/14/2122
+strain3345	Traction: Kriegsmarinestadt 	Rectal	5/6/2121
+strain1810	Traction: Motoropolis 	blood	9/12/2121
+strain1811	Traction: Motoropolis 	blood	9/9/2121
+strain1812	Traction: Motoropolis 	blood	12/4/2121
+strain1813	Traction: Motoropolis 	blood	8/29/2121
+strain1814	Traction: Motoropolis 	urine	9/11/2121
+strain1815	Traction: Motoropolis 	Axilla/Groin	9/7/2121
+strain1858	Traction: New Adria	blood	7/6/2121
+strain2419	Traction: New Adria	blood	12/15/2120
+strain2428	Traction: New Adria	blood	3/16/2121
+strain2429	Traction: New Adria	bone	7/1/2121
+strain2431	Traction: New Adria	blood	7/25/2121
+strain2531	Traction: New Adria	blood	2/4/2121
+strain2536	Traction: New Adria	blood	8/16/2121
+strain2548	Traction: New Adria	blood	1/25/2121
+strain2549	Traction: New Adria	urine	3/10/2121
+strain2550	Traction: New Adria	blood	9/9/2121
+strain2551	Traction: New Adria	blood	3/28/2121
+strain2552	Traction: New Adria	sputum	3/30/2121
+strain2553	Traction: New Adria	blood	5/27/2121
+strain2554	Traction: New Adria	urine	5/22/2121
+strain2555	Traction: New Adria	blood	3/19/2121
+strain2558	Traction: New Adria	Axilla	12/2/2121
+strain2560	Traction: New Adria	Vaginal	2/5/2121
+strain2561	Traction: New Adria	Axilla	4/22/2121
+strain2562	Traction: New Adria	Axilla/Groin	10/30/2121
+strain2563	Traction: New Adria	Axilla	4/30/2121
+strain2564	Traction: New Adria	Axilla	1/16/2121
+strain2565	Traction: New Adria	Axilla	3/17/2121
+strain2591	Traction: New Adria	Groin	11/2/2121
+strain2596	Traction: New Adria	urine	11/16/2121
+strain2603	Traction: New Adria	urine	11/8/2121
+strain2622	Traction: New Adria	blood	2/6/2121
+strain2626	Traction: New Adria	Groin	8/29/2121
+strain2667	Traction: New Adria	blood	10/5/2121
+strain2700	Traction: New Adria	blood	7/22/2121
+strain2730	Traction: New Adria	Groin	9/27/2121
+strain2734	Traction: New Adria	blood	3/17/2121
+strain2735	Traction: New Adria	urine	6/2/2121
+strain2746	Traction: New Adria	Axilla	3/1/2121
+strain2747	Traction: New Adria	Axilla	8/29/2121
+strain2748	Traction: New Adria	Axilla	6/17/2121
+strain2749	Traction: New Adria	Vaginal	8/27/2121
+strain2750	Traction: New Adria	Axilla	5/1/2121
+strain2751	Traction: New Adria	Axilla	4/8/2121
+strain2752	Traction: New Adria	Axilla	11/6/2121
+strain2753	Traction: New Adria	Axilla	9/16/2121
+strain2775	Traction: New Adria	Axilla/groin/nares pool	4/8/2121
+strain2776	Traction: New Adria	Axilla	1/19/2121
+strain2777	Traction: New Adria	Axilla	3/3/2121
+strain2862	Traction: New Adria	Axilla	5/3/2121
+strain2864	Traction: New Adria	Axilla	9/13/2121
+strain2865	Traction: New Adria	Axilla	4/14/2121
+strain2874	Traction: New Adria	Axilla	12/11/2120
+strain2877	Traction: New Adria	Axilla	4/22/2121
+strain2879	Traction: New Adria	Axilla	5/16/2121
+strain2881	Traction: New Adria	Axilla	5/10/2121
+strain2882	Traction: New Adria	Axilla	12/10/2120
+strain2883	Traction: New Adria	wound	9/7/2121
+strain2885	Traction: New Adria	Axilla	11/11/2121
+strain2886	Traction: New Adria	Axilla	8/6/2121
+strain2887	Traction: New Adria	Axilla	12/11/2120
+strain2888	Traction: New Adria	sputum	7/6/2121
+strain2889	Traction: New Adria	Skin swab	8/29/2121
+strain2890	Traction: New Adria	swab	8/5/2121
+strain2891	Traction: New Adria	urine	3/4/2121
+strain2892	Traction: New Adria	urine	5/4/2121
+strain2893	Traction: New Adria	sputum	1/23/2121
+strain2894	Traction: New Adria	Skin swab	9/3/2121
+strain2895	Traction: New Adria	Skin swab	9/7/2121
+strain2897	Traction: New Adria	sputum	3/15/2121
+strain2898	Traction: New Adria	urine	10/18/2121
+strain2923	Traction: New Adria	Axilla/groin/nares pool	7/8/2121
+strain2926	Traction: New Adria	Axilla	11/4/2121
+strain2927	Traction: New Adria	Axilla	11/21/2121
+strain2929	Traction: New Adria	Groin	6/15/2121
+strain2930	Traction: New Adria	Axilla	6/23/2121
+strain2931	Traction: New Adria	Axilla	10/25/2121
+strain2934	Traction: New Adria	Axilla	6/7/2121
+strain2936	Traction: New Adria	Axilla	10/23/2121
+strain2942	Traction: New Adria	Axilla	8/29/2121
+strain2943	Traction: New Adria	Axilla	1/24/2121
+strain2945	Traction: New Adria	nares	12/11/2120
+strain2967	Traction: New Adria	Axilla	7/27/2121
+strain2969	Traction: New Adria	nares	5/1/2121
+strain2970	Traction: New Adria	nares	8/18/2121
+strain2971	Traction: New Adria	Axilla	12/10/2120
+strain2975	Traction: New Adria	urine	11/5/2121
+strain2999	Traction: New Adria	nares	3/12/2121
+strain3000	Traction: New Adria	wound	2/13/2121
+strain3001	Traction: New Adria	Axilla	12/26/2120
+strain3002	Traction: New Adria	Axilla	9/30/2121
+strain3004	Traction: New Adria	Axilla	11/23/2121
+strain3005	Traction: New Adria	Axilla	12/24/2120
+strain3006	Traction: New Adria	Axilla	3/6/2121
+strain3008	Traction: New Adria	Axilla	5/2/2121
+strain3009	Traction: New Adria	Vaginal	5/13/2121
+strain3010	Traction: New Adria	Axilla	9/11/2121
+strain3318	Traction: New Adria	Nose	9/19/2121
+strain3319	Traction: New Adria	Groin	4/6/2121
+strain3320	Traction: New Adria	Axilla	6/14/2121
+strain3322	Traction: New Adria	Axilla	8/14/2121
+strain3323	Traction: New Adria	Axilla	11/27/2121
+strain3325	Traction: New Adria	Axilla	3/23/2121
+strain3326	Traction: New Adria	Axilla	8/9/2121
+strain3327	Traction: New Adria	Axilla	8/6/2121
+strain3328	Traction: New Adria	Axilla	3/15/2121
+strain3329	Traction: New Adria	Vaginal	8/3/2121
+strain3330	Traction: New Adria	Axilla	5/8/2121
+strain3551	Traction: New Adria	skin	12/29/2120
+strain3552	Traction: New Adria	skin	1/29/2121
+strain3557	Traction: New Adria	Axilla	10/7/2121
+strain3558	Traction: New Adria	Axilla	1/1/2121
+strain2082	Traction: New Wheeling	ear	7/20/2121
+strain2083	Traction: New Wheeling	Wound	12/7/2121
+strain2084	Traction: New Wheeling	blood	10/16/2121
+strain3982	Traction: New Wheeling	Vaginal	7/9/2121
+strain2631	Traction: Peripatetiapolis 	Axilla/Groin	4/17/2121
+strain2632	Traction: Peripatetiapolis 	Wound	6/4/2121
+strain1842	Traction: Wehrmachtstadt	urine	1/31/2121
+strain1843	Traction: Wehrmachtstadt	blood	6/1/2121
+strain1880	Traction: Wehrmachtstadt	nares	10/25/2121
+strain1882	Traction: Wehrmachtstadt	nares	8/5/2121
+strain1883	Traction: Wehrmachtstadt	Rectal	12/11/2121
+strain1884	Traction: Wehrmachtstadt	Vaginal	8/18/2121
+strain1885	Traction: Wehrmachtstadt	Rectal	2/13/2121
+strain1886	Traction: Wehrmachtstadt	Rectal	6/3/2121
+strain2028	Traction: Wehrmachtstadt	blood	5/20/2121
+strain2029	Traction: Wehrmachtstadt	blood	7/31/2121
+strain2030	Traction: Wehrmachtstadt	blood	7/15/2121
+strain2031	Traction: Wehrmachtstadt	Rectal	6/17/2121
+strain2032	Traction: Wehrmachtstadt	blood	3/30/2121
+strain2033	Traction: Wehrmachtstadt	blood	10/27/2121
+strain2034	Traction: Wehrmachtstadt	blood	5/13/2121
+strain2035	Traction: Wehrmachtstadt	blood	12/21/2121
+strain2036	Traction: Wehrmachtstadt	blood	11/19/2121
+strain2046	Traction: Wehrmachtstadt	Axilla/Groin	12/16/2121
+strain2077	Traction: Wehrmachtstadt	Rectal	7/3/2121
+strain2189 	Traction: Wehrmachtstadt	nares	12/5/2121
+strain2190	Traction: Wehrmachtstadt	Rectal	11/9/2121
+strain2229	Traction: Wehrmachtstadt	Bronchus	3/11/2121
+strain2378	Traction: Wehrmachtstadt	Axilla/Groin	1/9/2122
+strain2380	Traction: Wehrmachtstadt	Axilla/Groin	9/8/2121
+strain2388	Traction: Wehrmachtstadt	Axilla/Groin	1/28/2121
+strain2406	Traction: Wehrmachtstadt	urine	4/4/2121
+strain2510	Traction: Wehrmachtstadt	Axilla/Groin	2/19/2121
+strain2579	Traction: Wehrmachtstadt	Axilla	5/24/2121
+strain2937	Traction: Wehrmachtstadt	Axilla	6/13/2121
+strain2938	Traction: Wehrmachtstadt	Axilla	1/16/2121
