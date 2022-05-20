@@ -1,7 +1,7 @@
 # SNP_Wrap_Python
 Facilitates post-processing of SNP pipeline outputs
 
-The best-developed script in this package is intersectTwo_colTabSNPs.py, which reads five-column or six-column summaries of vcf files.
+The best-developed script in this package is intersectTwo_colTabSNPs.py, which reads five-column or six-column summaries of vcf files. The option, '--outputType T' produces a five-column .tsv as output while the option '--union' computes union of SNPs positions instead of intersection.
 
 For example:
 
