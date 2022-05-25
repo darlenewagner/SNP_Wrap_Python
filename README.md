@@ -21,3 +21,12 @@ The script, intersectAndComplement_colTabSNPs.py, is similar to the first, but t
 
 Here, 'D' indicates differences between input files, sample-1 and sample2, versus their intersection.
 
+Seven-column .tsv files are constructed by the following commands:
+
+```perl -e 'print("CHROM\tPOS\tREF\tALT\tQUAL\tINFO-DP\tCONSENS\n")' > sample_1.seven-col.tsv```
+
+and
+
+```bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%QUAL\t%INFO/AO\t%INFO/DP\n' sample_1.vcf.gz | perl -ne '@F=split(/\s+/, $_); printf "%\s\t%\d\t%\s\t%\s\t%\d\t%\d\t%0.4f\n", $F[0], $F[1], $F[2], $F[3], $F[4], $F[6], $F[5]/$F[6]' >> sample_1.seven-col.tsv```
+
+
