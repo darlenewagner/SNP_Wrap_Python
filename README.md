@@ -15,9 +15,9 @@ and
 
 ```bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%INFO/DP\t%INFO/TYPE\n' sample-1.vcf.gz >> sample-1.six-col.tsv```
 
-The script, , is similar to the first, but offers the additional options of displaying input file SNPs positions which are not found in the intersection.
+The script, intersectAndComplement_colTabSNPs.py, is similar to the first, but takes seven-column .tsv files and offers the additional options of displaying input file SNPs positions which are not found in the intersection.
 
-```intersectAndComplement_colTabSNPs.py sample-1.six-col.tsv sample-2.six-col.tsv --outputType D```
+```intersectAndComplement_colTabSNPs.py sample-1.seven-col.tsv sample-2.seven-col.tsv --outputType D```
 
 Here, 'D' indicates differences between input files, sample-1 and sample2, versus their intersection.
 
