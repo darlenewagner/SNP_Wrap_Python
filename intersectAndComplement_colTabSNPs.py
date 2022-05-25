@@ -3,7 +3,9 @@
 import sys, os.path, argparse, re, logging, warnings, csv, subprocess
 from collections import defaultdict
 
-## Reads two five-column or six-column .txt, .csv, or .tsv files to compute intersection of SNPs positions
+## Reads two seven-column .txt, .csv, or .tsv files to compute intersection of SNPs positions
+## The seven columns should have the following headers:
+## CHROM   POS     REF     ALT     QUAL    INFO-DP CONSENS
 
 ## Function: A closure for .tsv or .csv extension checking
 
@@ -74,6 +76,8 @@ refID = [x for x in header1 if re.search(r'(\bCHROM\b|\bRef(\s|_)ID\b)', x)]
 refBase = [x for x in header1 if re.search(r'(\bRef\b|\bREF\b)', x)]
 altBase = [x for x in header1 if re.search(r'(\bAlt\b|\bALT\b)', x)]
 stats = [x for x in header1 if re.search(r'(\bQual\b|\bQUAL\b)', x)]
+depth = [x for x in header1 if re.search(r'(\bINFO\-DP\b)', x)]
+consensus = [x for x in header1 if re.search(r'(\bCONSENS\b)', x)]
 
 try:
     temp = snpsPos1[0]
@@ -120,28 +124,32 @@ elif(args.outputType == 'D'): ### output five-column .tsv of non-intersection
         columns1[refBase[0]].pop(0)
         columns1[altBase[0]].pop(0)
         columns1[stats[0]].pop(0)
+        columns1[depth[0]].pop(0)
+        columns1[consensus[0]].pop(0)
         columns2[refID[0]].pop(0)
         columns2[refBase[0]].pop(0)
         columns2[altBase[0]].pop(0)
         columns2[stats[0]].pop(0)
+        columns2[depth[0]].pop(0)
+        columns2[consensus[0]].pop(0)
     except (IndexError):
         print("Improperly-formatted headers in {}".format(args.listFile1.name))
         sys.exit()
     print("Unique to {}".format(args.listFile1.name))
-    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0])
+    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0] + "\t" + consensus[0])
     for item in uniqueFile1:
         idx = 0
         while(idx < len(columns1[snpsPos1[0]])):
-            if( item == int(columns1[snpsPos1[0]][idx] ) ):
-                print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[stats[0]][idx])
+            if( item == int(columns1[snpsPos1[0]][idx]) and ( float(columns1[consensus[0]][idx]) > 0.75)):
+                print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[stats[0]][idx] + "\t" + columns1[depth[0]][idx]+ "\t" + columns1[consensus[0]][idx])
             idx = idx + 1
     print("Unique to {}".format(args.listFile2.name))
-    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0])
+    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0] + "\t" + consensus[0])
     for item in uniqueFile2:
         idx = 0
-        while(idx < len(columns2[snpsPos2[0]])):
-            if( item == int(columns2[snpsPos2[0]][idx] ) ):
-                print(columns2[refID[0]][idx] + "\t" + columns2[snpsPos2[0]][idx] + "\t" + columns2[refBase[0]][idx] + "\t" + columns2[altBase[0]][idx] + "\t" + columns2[stats[0]][idx])
+        while(idx < len(columns2[snpsPos2[0]]) ):
+            if( item == int(columns2[snpsPos2[0]][idx] ) and ( float(columns2[consensus[0]][idx]) > 0.75)):
+                print(columns2[refID[0]][idx] + "\t" + columns2[snpsPos2[0]][idx] + "\t" + columns2[refBase[0]][idx] + "\t" + columns2[altBase[0]][idx] + "\t" + columns2[stats[0]][idx] + "\t" + columns2[depth[0]][idx] + "\t" + columns1[consensus[0]][idx])
             idx = idx + 1
 
 elif(args.outputType == 'I'): ### output five-column .tsv format
@@ -150,15 +158,17 @@ elif(args.outputType == 'I'): ### output five-column .tsv format
         columns1[refBase[0]].pop(0)
         columns1[altBase[0]].pop(0)
         columns1[stats[0]].pop(0)
+        columns1[depth[0]].pop(0)
+        columns1[consensus[0]].pop(0)
     except (IndexError):
         print("Improperly-formatted headers in {}".format(args.listFile1.name))
         sys.exit()
-    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0])
+    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0] + "\t" + consensus[0])
     for item in allPositions:
         idx = 0
         while(idx < len(columns1[snpsPos1[0]])):
-            if( item == int(columns1[snpsPos1[0]][idx] ) ):
-                print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[stats[0]][idx])
+            if( (item == int(columns1[snpsPos1[0]][idx]) and (float(columns1[consensus[0]][idx]) > 0.75) )):
+                print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[stats[0]][idx] + "\t" + columns1[depth[0]][idx] + "\t" + columns1[consensus[0]][idx])
             idx = idx + 1
 elif((args.outputType == 'S') and (args.union == 'N')):  ### output verbose description of intersection
     print("{} has {} unique snps and {} has {} unique snps.".format(args.listFile1.name, str(len(list(uniqueFile1))), args.listFile2.name, str(len(list(uniqueFile2)))) )
