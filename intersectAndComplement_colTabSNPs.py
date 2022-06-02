@@ -76,8 +76,8 @@ refID = [x for x in header1 if re.search(r'(\bCHROM\b|\bRef(\s|_)ID\b)', x)]
 refBase = [x for x in header1 if re.search(r'(\bRef\b|\bREF\b)', x)]
 altBase = [x for x in header1 if re.search(r'(\bAlt\b|\bALT\b)', x)]
 stats = [x for x in header1 if re.search(r'(\bQual\b|\bQUAL\b)', x)]
-depth = [x for x in header1 if re.search(r'(\bINFO\-DP\b)', x)]
-consensus = [x for x in header1 if re.search(r'(\bCONSENS\b)', x)]
+depth = [x for x in header1 if re.search(r'(\bINFO\-DP\b|\bCoverage\b)', x)]
+consensus = [x for x in header1 if re.search(r'(\bCONSENS\b|\bFraction\b)', x)]
 
 try:
     temp = snpsPos1[0]
