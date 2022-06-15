@@ -140,7 +140,7 @@ elif(args.outputType == 'D'): ### output five-column .tsv of non-intersection
     for item in uniqueFile1:
         idx = 0
         while(idx < len(columns1[snpsPos1[0]])):
-            if( item == int(columns1[snpsPos1[0]][idx]) and ( float(columns1[consensus[0]][idx]) > 0.75)):
+            if( item == int(columns1[snpsPos1[0]][idx]) and ( float(columns1[consensus[0]][idx]) > 0.25)):
                 print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[stats[0]][idx] + "\t" + columns1[depth[0]][idx]+ "\t" + columns1[consensus[0]][idx])
             idx = idx + 1
     print("Unique to {}".format(args.listFile2.name))
@@ -148,8 +148,8 @@ elif(args.outputType == 'D'): ### output five-column .tsv of non-intersection
     for item in uniqueFile2:
         idx = 0
         while(idx < len(columns2[snpsPos2[0]]) ):
-            if( item == int(columns2[snpsPos2[0]][idx] ) and ( float(columns2[consensus[0]][idx]) > 0.75)):
-                print(columns2[refID[0]][idx] + "\t" + columns2[snpsPos2[0]][idx] + "\t" + columns2[refBase[0]][idx] + "\t" + columns2[altBase[0]][idx] + "\t" + columns2[stats[0]][idx] + "\t" + columns2[depth[0]][idx] + "\t" + columns1[consensus[0]][idx])
+            if( item == int(columns2[snpsPos2[0]][idx] ) and ( float(columns2[consensus[0]][idx]) > 0.25)):
+                print(columns2[refID[0]][idx] + "\t" + columns2[snpsPos2[0]][idx] + "\t" + columns2[refBase[0]][idx] + "\t" + columns2[altBase[0]][idx] + "\t" + columns2[stats[0]][idx] + "\t" + columns2[depth[0]][idx] + "\t" + columns2[consensus[0]][idx])
             idx = idx + 1
 
 elif(args.outputType == 'I'): ### output five-column .tsv format
@@ -160,16 +160,33 @@ elif(args.outputType == 'I'): ### output five-column .tsv format
         columns1[stats[0]].pop(0)
         columns1[depth[0]].pop(0)
         columns1[consensus[0]].pop(0)
+        columns2[refID[0]].pop(0)
+        columns2[refBase[0]].pop(0)
+        columns2[altBase[0]].pop(0)
+        columns2[stats[0]].pop(0)
+        columns2[depth[0]].pop(0)
+        columns2[consensus[0]].pop(0)
     except (IndexError):
         print("Improperly-formatted headers in {}".format(args.listFile1.name))
         sys.exit()
+    print("Shared SNPs in {}".format(args.listFile1.name))
     print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0] + "\t" + consensus[0])
     for item in allPositions:
         idx = 0
         while(idx < len(columns1[snpsPos1[0]])):
-            if( (item == int(columns1[snpsPos1[0]][idx]) and (float(columns1[consensus[0]][idx]) > 0.75) )):
+            if( (item == int(columns1[snpsPos1[0]][idx]) and (float(columns1[consensus[0]][idx]) > 0.25) )):
                 print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[stats[0]][idx] + "\t" + columns1[depth[0]][idx] + "\t" + columns1[consensus[0]][idx])
             idx = idx + 1
+    
+    print("Shared SNPs in {}".format(args.listFile2.name))
+    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0] + "\t" + consensus[0])
+    for item in allPositions:
+        idx = 0
+        while(idx < len(columns2[snpsPos1[0]])):
+            if( (item == int(columns2[snpsPos1[0]][idx]) and (float(columns2[consensus[0]][idx]) > 0.25) )):
+                print(columns2[refID[0]][idx] + "\t" + columns2[snpsPos1[0]][idx] + "\t" + columns2[refBase[0]][idx] + "\t" + columns2[altBase[0]][idx] + "\t" + columns2[stats[0]][idx] + "\t" + columns2[depth[0]][idx] + "\t" + columns2[consensus[0]][idx])
+            idx = idx + 1
+
 elif((args.outputType == 'S') and (args.union == 'N')):  ### output verbose description of intersection
     print("{} has {} unique snps and {} has {} unique snps.".format(args.listFile1.name, str(len(list(uniqueFile1))), args.listFile2.name, str(len(list(uniqueFile2)))) )
     if(args.union == 'Y'):
