@@ -29,9 +29,9 @@ logger.setLevel(logging.INFO)
 
 parser = argparse.ArgumentParser(description='Find intersection of SNPs positions from two plain text, single-column files', usage="intersectTwo_colTabSNPs.py snpFile1.tsv snpFile2.tsv")
 
-parser.add_argument("listFile1", type=tsv_check('.txt', '.tsv', '.csv', argparse.FileType('r')))
+parser.add_argument("listFile1", type=tsv_check('.tab', '.tsv', '.csv', argparse.FileType('r')))
 
-parser.add_argument("listFile2", type=tsv_check('.txt', '.tsv', '.csv', argparse.FileType('r')))
+parser.add_argument("listFile2", type=tsv_check('.tab', '.tsv', '.csv', argparse.FileType('r')))
 
 parser.add_argument('--union', '-u', default='N', choices=['Y','N'], help="Calculate union instead of intersection for SNP positions?")
 
@@ -66,7 +66,8 @@ snpsPos1 = [x for x in header1 if re.search(r'(\bPOS\b|\bPosition\b)', x)]
 refID = [x for x in header1 if re.search(r'(\bCHROM\b|\bRef(\s|_)ID\b)', x)]
 refBase = [x for x in header1 if re.search(r'(\bRef\b|\bREF\b)', x)]
 altBase = [x for x in header1 if re.search(r'(\bAlt\b|\bALT\b)', x)]
-stats = [x for x in header1 if re.search(r'(\bINFO-DP\b|\bQual\b)', x)]
+depth = [x for x in header1 if re.search(r'\bQUAL\b', x)]
+quality = [x for x in header1 if re.search(r'\bINFO-DP\b', x)]
 
 try:
     temp = snpsPos1[0]
@@ -107,23 +108,24 @@ uniqueFile2 = len(snpsFile2) - len(allPositions)
 if(args.outputType == 'C'): ### output single column of positions, intersection or union
     for item in allPositions:
         print(item)
-elif(args.outputType == 'T'): ### output five-column .tsv format
+elif(args.outputType == 'T'): ### output six-column .tsv format
     try:
         columns1[refID[0]].pop(0)
         columns1[refBase[0]].pop(0)
         columns1[altBase[0]].pop(0)
-        columns1[stats[0]].pop(0)
+        columns1[depth[0]].pop(0)
+        columns1[quality[0]].pop(0)
     except (IndexError):
         print("Improperly-formatted headers in {}".format(args.listFile1.name))
         sys.exit()
-    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0])
+    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + quality[0] + "\t" + depth[0])
     for item in allPositions:
         idx = 0
         while(idx < len(columns1[snpsPos1[0]])):
             if( item == int(columns1[snpsPos1[0]][idx] ) ):
-                print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[stats[0]][idx])
+                print(columns1[refID[0]][idx] + "\t" + columns1[snpsPos1[0]][idx] + "\t" + columns1[refBase[0]][idx] + "\t" + columns1[altBase[0]][idx] + "\t" + columns1[depth[0]][idx] + "\t" + columns1[quality[0]][idx])
             idx = idx + 1
-elif((args.outputType == 'S') && (args.union == 'N')):  ### output verbose description of intersection
+elif((args.outputType == 'S') and (args.union == 'N')):  ### output verbose description of intersection
     print("{} has {} unique snps and {} has {} unique snps.".format(args.listFile1.name, str(uniqueFile1), args.listFile2.name, str(uniqueFile2)) )
     if(args.union == 'Y'):
         print("Their union contains {} snps.".format(str(len(allPositions))))
