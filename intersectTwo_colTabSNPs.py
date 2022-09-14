@@ -66,8 +66,8 @@ snpsPos1 = [x for x in header1 if re.search(r'(\bPOS\b|\bPosition\b)', x)]
 refID = [x for x in header1 if re.search(r'(\bCHROM\b|\bRef(\s|_)ID\b)', x)]
 refBase = [x for x in header1 if re.search(r'(\bRef\b|\bREF\b)', x)]
 altBase = [x for x in header1 if re.search(r'(\bAlt\b|\bALT\b)', x)]
-depth = [x for x in header1 if re.search(r'\bQUAL\b', x)]
-quality = [x for x in header1 if re.search(r'\bINFO-DP\b', x)]
+quality = [x for x in header1 if re.search(r'\bQUAL\b', x)]
+depth = [x for x in header1 if re.search(r'\bINFO-DP\b', x)]
 
 try:
     temp = snpsPos1[0]
@@ -118,7 +118,7 @@ elif(args.outputType == 'T'): ### output six-column .tsv format
     except (IndexError):
         print("Improperly-formatted headers in {}".format(args.listFile1.name))
         sys.exit()
-    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + quality[0] + "\t" + depth[0])
+    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + depth[0] + "\t" + quality[0])
     for item in allPositions:
         idx = 0
         while(idx < len(columns1[snpsPos1[0]])):
