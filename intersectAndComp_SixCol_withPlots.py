@@ -36,6 +36,9 @@ def Compl(list1, intersec):
     snpSet2 = set(intersec)
     return list(snpSet1 - snpSet2)
 
+lowerCoord = 2482
+upperCoord = 3384
+
 logger = logging.getLogger("intersectAndComplement_colTabSNPs.py")
 logger.setLevel(logging.INFO)
 
@@ -47,7 +50,7 @@ parser.add_argument("listFile2", type=tsv_check('.tab', '.tsv', '.csv', argparse
 
 parser.add_argument('--union', '-u', default='N', choices=['Y','N'], help="Calculate union instead of intersection for SNP positions?")
 
-parser.add_argument('--outputType', '-o', default='S', choices=['C', 'D', 'I', 'S', 'U'], help="'S' = output summary of intersection/union, 'C' = output single column, 'I' = output intersection in original tabular format, or 'D' output non-intersection snps in tabular format.")
+parser.add_argument('--outputType', '-o', default='S', choices=['C', 'D', 'I', 'S', 'P', 'U'], help="'S' = output summary of intersection/union, 'C' = output single column, 'I' = output intersection in original tabular format, 'D' output non-concordant snps in tabular format, 'U' = output union with 'i' or 'm' labels on unique snps, or 'P'= same as U but restricted to Polio VP1 coordinates.")
 
 args = parser.parse_args()
 
@@ -194,7 +197,7 @@ elif(args.outputType == 'S'):  ### output verbose description of intersection
         print("Their union contains {} snps.".format(str(len(allPositions))))
     else:
         print("Their intersection contains {} snps.".format(str(len(allPositions))))
-elif(args.outputType == 'U'):
+elif((args.outputType == 'U') or (args.outputType == 'P')):
     try:
         columns1[refID[0]].pop(0)
         columns1[refBase[0]].pop(0)
@@ -210,19 +213,37 @@ elif(args.outputType == 'U'):
     except (IndexError):
         print("Improperly-formatted headers in {}".format(args.listFile1.name))
         sys.exit()
-    print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0])
-    idx1 = 0
-    idx2 = 0
-    seen = []
-    while(idx1 < len(columns1[refID[0]])):
-        if(int(columns1[snpsPos1[0]][idx1]) in compPositions):
-            print(columns1[refID[0]][idx1] + "\t" + columns1[snpsPos1[0]][idx1] + "\t" + columns1[refBase[0]][idx1] + "\t" + columns1[altBase[0]][idx1] + "\t" + columns1[stats[0]][idx1] + "\t" + columns1[depth[0]][idx1])
-        else:
-            print("m" + columns1[refID[0]][idx1] + "\t" + columns1[snpsPos1[0]][idx1] + "\t" + columns1[refBase[0]][idx1] + "\t" + columns1[altBase[0]][idx1] + "\t" + columns1[stats[0]][idx1] + "\t" + columns1[depth[0]][idx1])
-            seen.extend(columns1[snpsPos1[0]][idx1])
-        idx1 = idx1 + 1
+    if(args.outputType != 'P'):
+        print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0])
+        idx1 = 0
+        idx2 = 0
+        seen = []
+        while(idx1 < len(columns1[refID[0]])):
+            if(int(columns1[snpsPos1[0]][idx1]) in compPositions):
+                print(columns1[refID[0]][idx1] + "\t" + columns1[snpsPos1[0]][idx1] + "\t" + columns1[refBase[0]][idx1] + "\t" + columns1[altBase[0]][idx1] + "\t" + columns1[stats[0]][idx1] + "\t" + columns1[depth[0]][idx1])
+            else:
+                print("m" + columns1[refID[0]][idx1] + "\t" + columns1[snpsPos1[0]][idx1] + "\t" + columns1[refBase[0]][idx1] + "\t" + columns1[altBase[0]][idx1] + "\t" + columns1[stats[0]][idx1] + "\t" + columns1[depth[0]][idx1])
+                seen.extend(columns1[snpsPos1[0]][idx1])
+            idx1 = idx1 + 1
         
-    while(idx2 < len(columns2[refID[0]])):
-        if(not(int(columns2[snpsPos2[0]][idx2]) in compPositions)):
-            print("i" + columns2[refID[0]][idx2] + "\t" + columns2[snpsPos2[0]][idx2] + "\t" + columns2[refBase[0]][idx2] + "\t" + columns2[altBase[0]][idx2] + "\t" + columns2[stats[0]][idx2] + "\t" + columns2[depth[0]][idx2])
-        idx2 = idx2 + 1
+        while(idx2 < len(columns2[refID[0]])):
+            if(not(int(columns2[snpsPos2[0]][idx2]) in compPositions)):
+                print("i" + columns2[refID[0]][idx2] + "\t" + columns2[snpsPos2[0]][idx2] + "\t" + columns2[refBase[0]][idx2] + "\t" + columns2[altBase[0]][idx2] + "\t" + columns2[stats[0]][idx2] + "\t" + columns2[depth[0]][idx2])
+            idx2 = idx2 + 1
+    else:
+        print(refID[0] + "\t" + snpsPos1[0] + "\t" + refBase[0] + "\t" + altBase[0] + "\t" + stats[0] + "\t" + depth[0])
+        idx1 = 0
+        idx2 = 0
+        seen = []
+        while(idx1 < len(columns1[refID[0]])):
+            if((int(columns1[snpsPos1[0]][idx1]) in compPositions) and (int(columns1[snpsPos1[0]][idx1]) >= lowerCoord) and (int(columns1[snpsPos1[0]][idx1]) <= upperCoord)):
+                print(columns1[refID[0]][idx1] + "\t" + columns1[snpsPos1[0]][idx1] + "\t" + columns1[refBase[0]][idx1] + "\t" + columns1[altBase[0]][idx1] + "\t" + columns1[stats[0]][idx1] + "\t" + columns1[depth[0]][idx1])
+            elif((int(columns1[snpsPos1[0]][idx1]) >= lowerCoord) and (int(columns1[snpsPos1[0]][idx1]) <= upperCoord)):
+                print("m" + columns1[refID[0]][idx1] + "\t" + columns1[snpsPos1[0]][idx1] + "\t" + columns1[refBase[0]][idx1] + "\t" + columns1[altBase[0]][idx1] + "\t" + columns1[stats[0]][idx1] + "\t" + columns1[depth[0]][idx1])
+                seen.extend(columns1[snpsPos1[0]][idx1])
+            idx1 = idx1 + 1
+        
+        while(idx2 < len(columns2[refID[0]])):
+            if(not(int(columns2[snpsPos2[0]][idx2]) in compPositions) and (int(columns1[snpsPos1[0]][idx2]) >= lowerCoord) and (int(columns1[snpsPos1[0]][idx2]) <= upperCoord)):
+                print("i" + columns2[refID[0]][idx2] + "\t" + columns2[snpsPos2[0]][idx2] + "\t" + columns2[refBase[0]][idx2] + "\t" + columns2[altBase[0]][idx2] + "\t" + columns2[stats[0]][idx2] + "\t" + columns2[depth[0]][idx2])
+            idx2 = idx2 + 1
